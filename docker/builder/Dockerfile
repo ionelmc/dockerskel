@@ -1,7 +1,8 @@
 # we start from an image with build deps preinstalled
 FROM buildpack-deps:xenial
 
-# seems acceptable for building, note the notes above about C.UTF-8 - it's not really good for running apps
+# seems acceptable for building, note the notes above
+# about C.UTF-8 - it's not really good for running apps
 ENV LANG C.UTF-8
 
 # we'd add all the "-dev" packages we need here
@@ -13,13 +14,15 @@ RUN apt-get update \
 
 ENV PYTHON_PIP_VERSION 8.1.1
 RUN set -eEx \
- && curl -fSL 'https://bootstrap.pypa.io/get-pip.py' | python2.7 - --no-cache-dir --upgrade pip==$PYTHON_PIP_VERSION
+ && curl -fSL 'https://bootstrap.pypa.io/get-pip.py' | python2.7 - \
+         --no-cache-dir --upgrade pip==$PYTHON_PIP_VERSION
 
 ARG USER
 ARG UID
 ARG GID
 
-# we set some default options for pip here so we don't have to specify them all the time
+# we set some default options for pip here
+# so we don't have to specify them all the time
 
 # this will make pip additionally look for available wheels here
 ENV PIP_FIND_LINKS=/home/$USER/wheelcache

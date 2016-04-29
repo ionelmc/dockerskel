@@ -14,9 +14,11 @@ RUN apt-get update \
 
 ENV PYTHON_PIP_VERSION 8.1.1
 RUN set -eEx \
- && curl -fSL 'https://bootstrap.pypa.io/get-pip.py' | python2.7 - --no-cache-dir --upgrade pip==$PYTHON_PIP_VERSION
+ && curl -fSL 'https://bootstrap.pypa.io/get-pip.py' | python2.7 - \
+         --no-cache-dir --upgrade pip==$PYTHON_PIP_VERSION
 
 COPY .wheels /wheels
-RUN pip install --force-reinstall --ignore-installed --upgrade --no-index --use-wheel --no-deps /wheels/* \
+RUN pip install --force-reinstall --ignore-installed --upgrade \
+                --no-index --use-wheel --no-deps /wheels/* \
  && rm -rf /wheels
 
