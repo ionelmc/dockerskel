@@ -1,0 +1,19 @@
+version: '2'
+services:
+  web:
+    build: 'docker/web'
+    image: 'app-web'
+    ports:
+    - '8080:80'
+    volumes:
+    - '${PWD}/src:/app/src:ro'
+    links:
+    - 'pg'
+    environment:
+      DATABASE_HOST: 'pg'
+  pg:
+    image: 'postgres:9.5'
+    environment:
+      POSTGRES_DB: 'app'
+      POSTGRES_USER: 'app'
+      POSTGRES_PASSWORD: 'app'

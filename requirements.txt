@@ -1,0 +1,5 @@
+numpy==1.11.0
+fields==5.0.0
+hunter==1.3.0
+manhole==1.3.0
+uwsgi==2.0.12
