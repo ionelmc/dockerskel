@@ -9,7 +9,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
                     ca-certificates curl \
                     strace gdb lsof locate net-tools htop \
-                    python2.7-dbg python2.7 \
+                    python2.7-dbg python2.7 libpython2.7 \
  && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHON_PIP_VERSION 8.1.1
